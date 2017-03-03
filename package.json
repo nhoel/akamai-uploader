@@ -1,0 +1,32 @@
+{
+  "name": "@phantomcoder/akamai-uploader",
+  "version": "1.0.0",
+  "description": "A utility to upload directories to akamai",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nhoel/akamai-uploader.git"
+  },
+  "keywords": [
+    "upload",
+    "akamai",
+    "cdn"
+  ],
+  "author": "phantomcoder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nhoel/akamai-uploader/issues"
+  },
+  "homepage": "https://github.com/nhoel/akamai-uploader#readme",
+  "dependencies": {
+    "akamai-http-api": "^0.6.0",
+    "lodash": "^4.17.4",
+    "minimist": "^1.2.0"
+  },
+  "bin": {
+    "akamai": "bin/akamai.js"
+  }
+}
