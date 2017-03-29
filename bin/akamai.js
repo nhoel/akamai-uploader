@@ -49,7 +49,8 @@ if (command === 'read') {
 
 } else if (command === 'clean') {
   let akamaiWriter = new AkamaiWriter(akamai, accountRoot);
-  akamaiWriter.deleteItems().then(data => {
+  let path = argv.path||argv.p||'';
+  akamaiWriter.deleteItems(path).then(data => {
     console.log(data);
     process.exit(0);
   }).catch(err => {
