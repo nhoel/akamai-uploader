@@ -8,6 +8,15 @@
         <b>Command line:</b>
         <code>akamai -c <command> -r <account-root> -p <path> -u <upload-path></code>
     </p>
+    <p>Optional</p>
+    <b>-f or --cfg <filename></b>: configuration file (in JSON format) containing your akamai settings.
+    <code>
+        {
+          "akamaiKeyName": "my-key-name",
+          "akamaiKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+          "akamaiHost": "myHost.akamaixx.net"
+        }
+    </code>
     <ul>command:
         <li>read - read the contents from account-root and path combination</li>
         <li>clean - specified by path from account-root and path</li>

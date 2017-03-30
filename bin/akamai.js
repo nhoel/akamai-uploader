@@ -8,14 +8,27 @@ const argv = require('minimist')(process.argv.slice(2));
 
 const akamai = require('akamai-http-api');
 
+const fs = require('fs');
+
 const config = require('../config/configuration');
 
 const AkamaiReader = require('../lib/reader');
 const AkamaiWriter = require('../lib/writer');
 
-const keyName = process.env.AKAMAI_KEY_NAME||argv.akamaiKeyName||argv.n;
-const key = process.env.AKAMAI_KEY||argv.akamaiKey||argv.k;
-const host = process.env.AKAMAI_HOST||argv.akamaiHost||argv.h;
+const getFromFileConfig = (cfgPath) => {
+  let fileConfig = fs.readFileSync(cfgPath, 'utf8').toString();
+  return JSON.parse(fileConfig);
+}
+
+let fileConfig={};
+
+if (argv.cfg || argv.f) {
+  fileConfig = getFromFileConfig(argv.cfg||argv.f);
+}
+
+const keyName = process.env.AKAMAI_KEY_NAME||argv.akamaiKeyName||argv.n||fileConfig.akamaiKeyName;
+const key = process.env.AKAMAI_KEY||argv.akamaiKey||argv.k||fileConfig.akamaiKey;
+const host = process.env.AKAMAI_HOST||argv.akamaiHost||argv.h||fileConfig.akamaiHost;
 
 const accountRoot = argv.accountRoot||argv.r||'/';
 const tempFolder = argv.tempFolder||argv.t||'tmp/';

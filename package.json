@@ -1,6 +1,6 @@
 {
   "name": "@phantomcoder/akamai-uploader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A utility to upload directories to akamai",
   "main": "index.js",
   "scripts": {
