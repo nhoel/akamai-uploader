@@ -12,7 +12,7 @@ let cfg = {
   }
 };
 
-module.exports = (keyname, key, host) => {
+module.exports = (keyname, key, host, timeout) => {
   if (keyname === undefined) {
     throw new Error('Key name cannot be undefined.');
   }
@@ -25,5 +25,8 @@ module.exports = (keyname, key, host) => {
   cfg.keyName = keyname;
   cfg.key = key;
   cfg.host = host;
+  if (timeout !== undefined) {
+    cfg.request.timeout = parseInt(timeout, 10);
+  }
   return cfg;
 }

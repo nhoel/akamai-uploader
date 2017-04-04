@@ -29,6 +29,7 @@ if (argv.cfg || argv.f) {
 const keyName = process.env.AKAMAI_KEY_NAME||argv.akamaiKeyName||argv.n||fileConfig.akamaiKeyName;
 const key = process.env.AKAMAI_KEY||argv.akamaiKey||argv.k||fileConfig.akamaiKey;
 const host = process.env.AKAMAI_HOST||argv.akamaiHost||argv.h||fileConfig.akamaiHost;
+const timeout = process.env.AKAMAI_TIMEOUT||argv.timeout||argv.t||fileConfig.timeout;
 
 const accountRoot = argv.accountRoot||argv.r||'/';
 const tempFolder = argv.tempFolder||argv.t||'tmp/';
@@ -40,8 +41,7 @@ command = command.toLowerCase();
 let akamaiConfig;
 
 try {
-  akamaiConfig = config(keyName, key, host);
-  //console.log(akamaiConfig);
+  akamaiConfig = config(keyName, key, host, timeout);
   akamai.setConfig(akamaiConfig);
 } catch (err) {
   console.log('Invalid arguments.');
@@ -68,7 +68,9 @@ if (command === 'read') {
     process.exit(0);
   }).catch(err => {
     console.log(err);
-    process.exit(-1);
+    //do not throw an error.
+    //try uploading without it.
+    process.exit(0);
   });
 } else if (command === 'upload') {
   let uploadFolder = argv.uploadPath||argv.u||'./';
